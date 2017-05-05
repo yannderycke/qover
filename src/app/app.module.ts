@@ -5,11 +5,13 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { QuoteComponent} from './quote/quote.component'
 import { AuthModule } from './authentication/auth.module'
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    QuoteComponent
     
   ],
   imports: [
@@ -17,7 +19,9 @@ import { AuthModule } from './authentication/auth.module'
     FormsModule,
     HttpModule,
     AuthModule,
-    RouterModule
+    RouterModule.forRoot([
+				{ path: 'quote', component: QuoteComponent }
+			]),
   ],
   providers: [],
   bootstrap: [AppComponent]
