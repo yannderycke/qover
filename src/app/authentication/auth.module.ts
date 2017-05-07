@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
-import { LoginComponent} from  './login/login.component'
+import { LoginComponent} from  './login/login.component';
+import { UserService } from '../shared/user.service'
 
 
 @NgModule({
@@ -22,7 +23,7 @@ import { LoginComponent} from  './login/login.component'
 
 	],
 	providers: [
-
+		UserService
 	]
 })
 
