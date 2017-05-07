@@ -7,9 +7,9 @@ import { Component, Input } from '@angular/core';
 })
 
 export class QuoteComponent {
-
+	brands: Array<string>;
 	constructor() {
-
+		this.brands=['Audi', 'BMW', 'Porsche']
 
 	}
 }

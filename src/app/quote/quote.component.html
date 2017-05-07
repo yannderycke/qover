@@ -1,1 +1,13 @@
 <h1>Quote</h1>
+
+
+<div class="form-group row">
+  <label for="example-text-input" class="col-2 col-form-label">Name</label>
+  <div class="col-10">
+    <input  (ngModel)="user"  class="form-control" type="text" id="name">
+    <select (ngModel)="user.brand" (ngModelChange)="save(user)"> 
+      <option *ngFor="let brand of brands"  >{{brand}}</option>
+    </select>
+  </div>
+  <button (click)="getQuote">GET PRICE </button>
+</div>
