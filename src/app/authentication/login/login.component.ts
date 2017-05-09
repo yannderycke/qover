@@ -13,8 +13,6 @@ export class LoginComponent {
 	login: string;
 	password: string;
 	error: boolean;
-
-
 	constructor(private userService: UserService, private formBuilder: FormBuilder, private router: Router) {
 		this.login = "contact@qover.me";
 	}
@@ -25,8 +23,14 @@ export class LoginComponent {
 			password: this.password
 		}
 		this.userService.login(data).subscribe(
-			data => { console.log(data); this.router.navigate(['/quote']); },
-			err => { console.log(err); this.error = true },
+			data => { 
+				console.log(data); 
+				this.userService.userLogged = data; 
+				localStorage.setItem('token', data.token)
+				this.router.navigate(['/quote']); },
+			err => { 
+				console.log(err); 
+				this.error = true },
 			() => console.log('Login')
 		);
 	}

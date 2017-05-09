@@ -1,13 +1,29 @@
+<div *ngIf="showSuccess" class="alert alert-success">
+  <strong>Success!</strong> Your quote has been sent !
+</div>
+<div *ngIf="showError" class="alert alert-danger">
+  <strong>Error!</strong> Unkwnow issue
+</div>
 <h1>Quote</h1>
 
-
 <div class="form-group row">
-  <label for="example-text-input" class="col-2 col-form-label">Name</label>
-  <div class="col-10">
-    <input  (ngModel)="user"  class="form-control" type="text" id="name">
-    <select (ngModel)="user.brand" (ngModelChange)="save(user)"> 
-      <option *ngFor="let brand of brands"  >{{brand}}</option>
+  <form [formGroup]="quoteForm" novalidate>
+
+    <label for="namee" class="col-2 col-form-label">Name</label>
+    <input formControlName="name" [(ngModel)]="quote.userName" name="name" class="form-control" type="text" id="name">
+    <label for="amount" class="col-2 col-form-label">Value</label>
+    <input formControlName="value" [(ngModel)]="quote.value" name="value" class="form-control" type="text" id="value">
+    <div *ngIf="quoteForm.controls.value.errors">
+      <p *ngIf="quoteForm.controls.value.errors.stringError">{{quoteForm.controls.value.errors.stringError}}</p>
+      <p *ngIf="quoteForm.controls.value.errors.valueError">{{quoteForm.controls.value.errors.valueError}}</p>
+    </div>
+    <select formControlName="brand" [(ngModel)]="quote.brand"> 
+      <option *ngFor="let brand of brands"  [ngValue]="brand" >{{brand.name}}</option>
     </select>
-  </div>
-  <button (click)="getQuote">GET PRICE </button>
+
+    <button (click)="getQuote(quote)" [disabled]="!quoteForm.valid">GET PRICE </button>
+    <div *ngFor="let error of quoteForm.errors"> {{error}}</div>
+  </form>
+  <p>Price : {{priceFormat}} eur</p>
 </div>
+

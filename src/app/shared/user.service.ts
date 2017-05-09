@@ -9,7 +9,7 @@ import 'rxjs/add/operator/map';
 export class UserService {
     url: string = 'http://localhost:3000'
     private subject = new Subject<any>();
-
+    userLogged;
     constructor(private http: Http) { }
 
 
